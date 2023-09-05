@@ -1,8 +1,10 @@
-
+//import music
 /**
 * Use this file to define custom functions and blocks.
 * Read more at https://makecode.microbit.org/blocks/custom
 */
+
+
 
 enum MyEnum {
     //% block="one"
@@ -22,6 +24,18 @@ enum MyEnum {
  */
 //% weight=100 color=#0fbc11 icon=""
 namespace Play {
+    
+    //% block
+    export function movementSensed(): boolean {
+        if (Gesture.Shake || Gesture.TiltLeft || Gesture.TiltRight || Gesture.FreeFall || Gesture.ThreeG) {
+            return true
+        }
+        return false
+    }
+    
+    
+    
+    
     /**
      * Test Block: Plays different melodies and show
      * different displays depending on sensor input 
@@ -51,7 +65,9 @@ namespace Play {
             music.playMelody("C5 A B G A F G E ", 120)
         }
     }
+    
 
+    
 
 
     /**
@@ -63,11 +79,11 @@ namespace Play {
      * @param e describe parameter here
      */
     //% block
-    //  export function fib(value: number): number {
-    //       return value <= 1 ? value : fib(value -1) + fib(value - 2);
-    //  }
+      export function fib(value: number): number {
+           return value <= 1 ? value : fib(value -1) + fib(value - 2);
+      }
 
-
+    
 
     /**
   * Get the word field editor
