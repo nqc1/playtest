@@ -38,11 +38,25 @@ namespace Play {
     
 
     //% block
-    export function LoseSound(){
+    /**
+    * Sound plays if game event happens which 
+    * correspondes to a player setback or loss
+    */
+    export function LoseSound() {
+        //melody needs test
         music.playMelody("C5 C C5 C B D A F ", 120)
     }
    
 
+       //% block
+    /**
+    * Sound plays if game event happens which
+    * correspondes to a player advancement or win
+    */
+    export function WinSound() {
+        //melody needs test
+        music.playMelody("C5 C C5 C B D A F ", 120)
+    }
 
     /**
      * Test Block: Plays different melodies and show
