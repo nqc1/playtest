@@ -22,9 +22,12 @@ enum MyEnum {
 /**
  * Custom blocks
  */
-//% weight=100 color=#0fbc11 icon=""
+//% weight=100 color=#548B54 icon="\uf0a4"
 namespace Play {
-    
+
+    /**
+    * Boolean Block: Returns true if a microbit held by a player moves
+    */
     //% block
     export function movementSensed(): boolean {
         if (Gesture.Shake || Gesture.TiltLeft || Gesture.TiltRight || Gesture.FreeFall || Gesture.ThreeG) {
@@ -33,9 +36,14 @@ namespace Play {
         return false
     }
     
-    
-    
-    
+
+    //% block
+    export function LoseSound(){
+        music.playMelody("C5 C C5 C B D A F ", 120)
+    }
+   
+
+
     /**
      * Test Block: Plays different melodies and show
      * different displays depending on sensor input 
@@ -79,11 +87,13 @@ namespace Play {
      * @param e describe parameter here
      */
     //% block
+
+    /*
       export function fib(value: number): number {
            return value <= 1 ? value : fib(value -1) + fib(value - 2);
       }
 
-    
+    */
 
     /**
   * Get the word field editor
