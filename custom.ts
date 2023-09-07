@@ -137,40 +137,7 @@ namespace Play {
     export function WinSound() {
         //melody needs test
         music.playMelody("E D E C", 200)
-    }
-
-    /**
-     * Test Block: Plays different melodies and show
-     * different displays depending on sensor input 
-     */
-    //% block
-    export function Test(e: Gesture): void {
-        // If micro:bit is shaken, display a smiley face and play a melody
-        if (e === Gesture.Shake) {
-            basic.showLeds(`
-        . # . # .
-        . # . # .
-        . . . . .
-        # . . . #
-        . # # # .
-        `)
-            music.playMelody("C5 C C5 C B D A F ", 120)
-
-            // If micro:bit is accelerating downward, display a smiley face and play a melody
-        } if (e === Gesture.FreeFall) {
-            basic.showLeds(`
-        . # . # .
-        . # . # .
-        . . . . .
-        . # # # .
-        # . . . #
-        `)
-            music.playMelody("C5 A B G A F G E ", 120)
-        }
-    }
-    
-
-    
+    }  
 
 
     /**
