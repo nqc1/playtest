@@ -1,2 +1,1 @@
-Play.WinSound()
-Play.LoseSound()
+Play.customCountdown(15)
