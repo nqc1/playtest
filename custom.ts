@@ -44,7 +44,7 @@ namespace Play {
     */
     export function LoseSound() {
         //melody needs test
-        music.playMelody("C5 C C5 C B D A F ", 120)
+        music.playMelody("G E C", 150)
     }
    
 
@@ -55,7 +55,7 @@ namespace Play {
     */
     export function WinSound() {
         //melody needs test
-        music.playMelody("C5 C C5 C B D A F ", 120)
+        music.playMelody("E D E C", 200)
     }
 
     /**
