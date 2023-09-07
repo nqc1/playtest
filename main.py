@@ -1,1 +1,4 @@
-Play.custom_countdown(15)
+def on_forever():
+    if True:
+        pass
+basic.forever(on_forever)

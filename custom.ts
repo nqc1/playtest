@@ -25,16 +25,41 @@ enum MyEnum {
 //% weight=100 color=#548B54 icon="\uf0a4"
 namespace Play {
 
+
     /**
-    * Boolean Block: Returns true if a microbit held by a player moves
+    * Check Movement
+    * @returns True if movement is detected, false otherwise.
     */
-    //% block
-    export function movementSensed(): boolean {
-        if (Gesture.Shake || Gesture.TiltLeft || Gesture.TiltRight || Gesture.FreeFall || Gesture.ThreeG) {
-            return true
+    //% block="Is movement detected"
+    export function isMovementDetected(): boolean {
+        let threshold = 500; // Adjust this threshold value as needed
+        let prevX = input.acceleration(Dimension.X);
+        let prevY = input.acceleration(Dimension.Y);
+        let prevZ = input.acceleration(Dimension.Z);
+
+        basic.pause(100); // Wait for a moment to collect new readings
+
+        let currentX = input.acceleration(Dimension.X);
+        let currentY = input.acceleration(Dimension.Y);
+        let currentZ = input.acceleration(Dimension.Z);
+
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
+
+        if (deltaX > threshold || deltaY > threshold || deltaZ > threshold) {
+            return true; // Movement detected
+        } else {
+            return false; // No movement detected
         }
-        return false
     }
+
+
+
+
+
+
+
     
 
     //% block
