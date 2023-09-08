@@ -30,7 +30,7 @@ namespace Play {
     * Check Movement
     * @returns True if movement is detected, false otherwise.
     */
-    //% block="Is movement detected"
+    //% block="Is Moving"
     export function isMovementDetected(): boolean {
         let threshold = 500; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
@@ -63,7 +63,7 @@ namespace Play {
         */
     //% block="Is Jumping"
     export function isJumping(): boolean {
-        let threshold = 3000; // Adjust this threshold value as needed
+        let threshold = 1750; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -123,7 +123,7 @@ namespace Play {
         */
     //% block="Is Walking"
     export function isWalking(): boolean {
-        let threshold = 500; // Adjust this threshold value as needed
+        let threshold = 400; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -185,45 +185,39 @@ namespace Play {
 
 
 
-
     /**
-    * Check Proximity
-    * @param otherDevice - The other micro:bit to check proximity with.
-    * @returns True if within 3 meters, false otherwise.
-    */
-    //% block="Is %thisDevice within 3 meters of %otherDevice"
-    export function isWithin3Meters(otherDevice: number): boolean {
+     * Check Proximity (based on signal strength)
+     * @param otherDevice - The other micro:bit to check proximity with.
+     * @returns True if signal strength suggests proximity, false otherwise.
+     */
+    //% block="Is %thisDevice close to %otherDevice"
+    export function isClose(otherDevice: number): boolean {
+        radio.setTransmitPower(0)
         radio.setGroup(1); // Set a radio group (choose any number you like)
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
-        
-        let startTime = input.runningTime();
-        while (input.runningTime() - startTime < 1000) {
-            const received = radio.receiveNumber();
-            if (received === 1) {
-                WinSound()
-                return true; // If we receive a pong from the other micro:bit, they are within 3 meters
-            }
-        }
 
-        return false; // If we didn't receive a pong within 1 second, assume they are not within 3 meters
+        let signalStrengthThreshold = 0; // Adjust this threshold as needed
+
+        let proximityDetected = false;
+
+        radio.onReceivedValue(function (name, signalStrength) {
+            if (name === "ping" && signalStrength >= signalStrengthThreshold) {
+                proximityDetected = true; // If signal strength suggests proximity, set the flag to true
+            }
+        });
+
+        basic.pause(1000); // Wait for a moment
+
+        return proximityDetected; // Return the flag indicating whether proximity was detected or not
     }
 
-    /**
-     * Listen for ping and send pong
-     */
-    radio.onDataPacketReceived(({ receivedString, receivedNumber }) => {
-        if (receivedString == "ping" && receivedNumber == 1) {
-            radio.sendValue("pong", 1);
-        }
-    });
 
-
-
-    //% block
+    
     /**
     * Sound plays if game event happens which
     * correspondes to a player advancement or win
     */
+    //% block
     export function WinSound() {
         //melody needs test
         music.playMelody("E D E C", 200)
@@ -240,12 +234,6 @@ namespace Play {
      */
     //% block
 
-    /*
-      export function fib(value: number): number {
-           return value <= 1 ? value : fib(value -1) + fib(value - 2);
-      }
-
-    */
 
     /**
   * Get the word field editor
