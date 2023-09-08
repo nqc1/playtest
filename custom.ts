@@ -192,15 +192,15 @@ namespace Play {
      */
     //% block="Is %thisDevice close to %otherDevice"
     export function isClose(otherDevice: number): boolean {
-        radio.setTransmitPower(0)
+        radio.setTransmitPower(0) //This is weird. May need to be 
         radio.setGroup(1); // Set a radio group (choose any number you like)
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
 
-        let signalStrengthThreshold = 0; // Adjust this threshold as needed
+        let signalStrengthThreshold = 0; // This may not do anything
 
         let proximityDetected = false;
 
-        radio.onReceivedValue(function (name, signalStrength) {
+        radio.onReceivedValue(function (name, signalStrength) { //look more into the onreceived value function and other radio uses
             if (name === "ping" && signalStrength >= signalStrengthThreshold) {
                 proximityDetected = true; // If signal strength suggests proximity, set the flag to true
             }
@@ -256,3 +256,8 @@ namespace Play {
     //
     //  }
 }
+
+
+
+//Code Cuts
+//
