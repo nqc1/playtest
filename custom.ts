@@ -47,13 +47,74 @@ namespace Play {
         let deltaY = Math.abs(currentY - prevY);
         let deltaZ = Math.abs(currentZ - prevZ);
 
-        if (deltaX > threshold || deltaY > threshold || deltaZ > threshold) {
+        //calculate acceleration via euclidian norm rather than by individual directions
+        if (Math.sqrt((deltaX * deltaX)+(deltaY * deltaY)+(deltaZ*deltaZ)) > threshold) {
+        //if (deltaX > threshold || deltaY > threshold || deltaZ > threshold) {
             return true; // Movement detected
         } else {
             return false; // No movement detected
         }
     }
 
+
+    /**
+        * Check Jumping
+        * @returns True if Jumping is detected, false otherwise.
+        */
+    //% block="Is Jumping"
+    export function isJumping(): boolean {
+        let threshold = 1000; // Adjust this threshold value as needed
+        let prevX = input.acceleration(Dimension.X);
+        let prevY = input.acceleration(Dimension.Y);
+        let prevZ = input.acceleration(Dimension.Z);
+
+        basic.pause(100); // Wait for a moment to collect new readings
+
+        let currentX = input.acceleration(Dimension.X);
+        let currentY = input.acceleration(Dimension.Y);
+        let currentZ = input.acceleration(Dimension.Z);
+
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
+
+
+        if (deltaY > threshold) {
+            return true; // Jumping detected
+        } else {
+            return false; // No Jumping detected
+        }
+    }
+
+
+    /**
+        * Check Running
+        * @returns True if Running is detected, false otherwise.
+        */
+    //% block="Is Running"
+    export function isRunning(): boolean {
+        let threshold = 1000; // Adjust this threshold value as needed
+        let prevX = input.acceleration(Dimension.X);
+        let prevY = input.acceleration(Dimension.Y);
+        let prevZ = input.acceleration(Dimension.Z);
+
+        basic.pause(100); // Wait for a moment to collect new readings
+
+        let currentX = input.acceleration(Dimension.X);
+        let currentY = input.acceleration(Dimension.Y);
+        let currentZ = input.acceleration(Dimension.Z);
+
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
+
+
+        if (deltaZ > threshold) {
+            return true; // Jumping detected
+        } else {
+            return false; // No Jumping detected
+        }
+    }
 
 
 
@@ -106,11 +167,12 @@ namespace Play {
     export function isWithin3Meters(otherDevice: number): boolean {
         radio.setGroup(1); // Set a radio group (choose any number you like)
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
-
+        
         let startTime = input.runningTime();
         while (input.runningTime() - startTime < 1000) {
             const received = radio.receiveNumber();
             if (received === 1) {
+                WinSound()
                 return true; // If we receive a pong from the other micro:bit, they are within 3 meters
             }
         }
