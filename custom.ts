@@ -63,7 +63,7 @@ namespace Play {
         */
     //% block="Is Jumping"
     export function isJumping(): boolean {
-        let threshold = 1000; // Adjust this threshold value as needed
+        let threshold = 3000; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -93,7 +93,7 @@ namespace Play {
         */
     //% block="Is Running"
     export function isRunning(): boolean {
-        let threshold = 1000; // Adjust this threshold value as needed
+        let threshold = 750; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -117,6 +117,34 @@ namespace Play {
     }
 
 
+    /**
+        * Check Waling
+        * @returns True if Walking is detected, false otherwise.
+        */
+    //% block="Is Walking"
+    export function isWalking(): boolean {
+        let threshold = 500; // Adjust this threshold value as needed
+        let prevX = input.acceleration(Dimension.X);
+        let prevY = input.acceleration(Dimension.Y);
+        let prevZ = input.acceleration(Dimension.Z);
+
+        basic.pause(100); // Wait for a moment to collect new readings
+
+        let currentX = input.acceleration(Dimension.X);
+        let currentY = input.acceleration(Dimension.Y);
+        let currentZ = input.acceleration(Dimension.Z);
+
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
+
+
+        if (deltaZ > threshold) {
+            return true; // Walking detected
+        } else {
+            return false; // No Walking detected
+        }
+    }
 
 
 
