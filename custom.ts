@@ -110,9 +110,9 @@ namespace Play {
 
 
         if (deltaZ > threshold) {
-            return true; // Jumping detected
+            return true; // Running detected
         } else {
-            return false; // No Jumping detected
+            return false; // No Running detected
         }
     }
 
