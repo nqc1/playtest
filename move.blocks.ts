@@ -41,7 +41,7 @@ namespace MoveAndPlay {
         */
     //% block="Is Jumping"
     export function isJumping(): boolean {
-        let threshold = 1750; // Adjust this threshold value as needed
+        let threshold = -1750; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -52,12 +52,12 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = Math.abs(currentX - prevX);
-        let deltaY = Math.abs(currentY - prevY);
-        let deltaZ = Math.abs(currentZ - prevZ);
+        let deltaX = (currentX - prevX);
+        let deltaY = (currentY - prevY);
+        let deltaZ = (currentZ - prevZ);
 
 
-        if (deltaY > threshold) {
+        if (deltaY < threshold) {
             return true; // Jumping detected
         } else {
             return false; // No Jumping detected
@@ -82,9 +82,9 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = Math.abs(currentX - prevX);
-        let deltaY = Math.abs(currentY - prevY);
-        let deltaZ = Math.abs(currentZ - prevZ);
+        let deltaX = (currentX - prevX);
+        let deltaY = (currentY - prevY);
+        let deltaZ = (currentZ - prevZ);
 
 
         if (deltaZ > threshold) {
@@ -112,15 +112,78 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = Math.abs(currentX - prevX);
-        let deltaY = Math.abs(currentY - prevY);
-        let deltaZ = Math.abs(currentZ - prevZ);
+        let deltaX = (currentX - prevX);
+        let deltaY = (currentY - prevY);
+        let deltaZ = (currentZ - prevZ);
 
 
         if (deltaZ > threshold) {
             return true; // Walking detected
         } else {
             return false; // No Walking detected
+        }
+    }
+
+
+
+
+    /**
+    * Check Standing
+    * @returns True if standing is detected, false otherwise.
+    */
+    //% block="Is Standing"
+    export function isStanding(): boolean {
+        let threshold = -700; // Adjust this threshold value as needed
+        let prevX = input.acceleration(Dimension.X);
+        let prevY = input.acceleration(Dimension.Y);
+        let prevZ = input.acceleration(Dimension.Z);
+
+        basic.pause(100); // Wait for a moment to collect new readings
+
+        let currentX = input.acceleration(Dimension.X);
+        let currentY = input.acceleration(Dimension.Y);
+        let currentZ = input.acceleration(Dimension.Z);
+
+        let deltaX = (currentX - prevX);
+        let deltaY = (currentY - prevY);
+        let deltaZ = (currentZ - prevZ);
+
+
+        if (deltaY < threshold) {
+            return true; // Standing detected
+        } else {
+            return false; // No Standing detected
+        }
+    }
+
+    ////The below function probably won't work. It seems that the mircobit is unable to
+    ////Determine the directionality of movement?
+    /**
+    * Check Sitting
+    * @returns True if sitting is detected, false otherwise.
+    */
+    //% block="Is Sitting"
+    export function isSitting(): boolean {
+        let threshold = 700; // Adjust this threshold value as needed
+        let prevX = input.acceleration(Dimension.X);
+        let prevY = input.acceleration(Dimension.Y);
+        let prevZ = input.acceleration(Dimension.Z);
+
+        basic.pause(100); // Wait for a moment to collect new readings
+
+        let currentX = input.acceleration(Dimension.X);
+        let currentY = input.acceleration(Dimension.Y);
+        let currentZ = input.acceleration(Dimension.Z);
+
+        let deltaX = (currentX - prevX);
+        let deltaY = (currentY - prevY);
+        let deltaZ = (currentZ - prevZ);
+
+
+        if (deltaY > threshold) {
+            return true; // Sitting detected
+        } else {
+            return false; // No Sitting detected
         }
     }
 
