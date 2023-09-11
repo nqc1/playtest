@@ -1,6 +1,5 @@
 def on_forever():
-    if Play.is_close(0):
-        music.play(music.tone_playable(131, music.beat(BeatFraction.WHOLE)),
+    if MoveAndPlay.is_jumping():
+        music.play(music.tone_playable(523, music.beat(BeatFraction.SIXTEENTH)),
             music.PlaybackMode.UNTIL_DONE)
-        music.rest(music.beat(BeatFraction.DOUBLE))
 basic.forever(on_forever)

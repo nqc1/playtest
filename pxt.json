@@ -11,7 +11,10 @@
         "main.ts",
         "README.md",
         "custom.ts",
-        "main.py"
+        "main.py",
+        "radio.blocks.ts",
+        "sound.blocks.ts",
+        "move.blocks.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -23,5 +26,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj"
+    "preferredEditor": "tsprj"
 }
