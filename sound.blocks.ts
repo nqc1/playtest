@@ -3,6 +3,46 @@
  */
 //% weight=100 color=#548B54 icon="\uf0a4"
 namespace PlayTools {
+
+
+    // /**
+    // * Any Sound Detected
+    // * @returns True if any sound is detected, false otherwise.
+    // */
+    // //% block="Any Sound Detected"
+    // export function anySoundDetected(): boolean {
+    //     let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
+
+    //     // Check if the sound level is above a minimum threshold
+    //     let minimumThreshold = 690; // Adjust as needed
+
+    //     if (soundLevel > minimumThreshold) {
+    //         return true; // Sound detected
+    //     } else {
+    //         return false; // No significant sound detected
+    //     }
+    // }
+
+    // /**
+    // * Sound Detected
+    // * @param sensitivity - The sensitivity threshold for sound detection (0-1023).
+    //  * @returns True if sound is detected, false otherwise.
+    // */
+    // //% block="Sound Detected with Sensitivity $sensitivity"
+    // export function soundDetected(sensitivity: number): boolean {
+    //     let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
+
+    //     // Check if the sound level exceeds the sensitivity threshold
+    //     if (soundLevel > sensitivity) {
+    //         return true; // Sound detected
+    //     } else {
+    //         return false; // No significant sound detected
+    //     }
+    // }
+
+
+
+
     //% block
     /**
     * Sound plays if game event happens which 
