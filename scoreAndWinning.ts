@@ -79,6 +79,7 @@ namespace PlayTools {
         if (score >= winScore) {
             winSound()
             basic.showString("YOU WIN!");
+            resetScore()
         }
     }
 
