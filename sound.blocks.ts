@@ -48,7 +48,7 @@ namespace PlayTools {
     * Sound plays if game event happens which 
     * correspondes to a player setback or loss
     */
-    export function LoseSound() {
+    export function loseSound() {
         //melody needs test
         music.playMelody("G E C", 150)
     }
@@ -58,7 +58,7 @@ namespace PlayTools {
     * correspondes to a player advancement or win
     */
     //% block
-    export function WinSound() {
+    export function winSound() {
         //melody needs test
         music.playMelody("E D E C", 200)
     }
@@ -81,8 +81,8 @@ namespace PlayTools {
                 basic.clearScreen();
             }
         }
-        WinSound()
-        LoseSound()
+        winSound()
+        loseSound()
         basic.showIcon(IconNames.Happy);
     }
 

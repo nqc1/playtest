@@ -14,7 +14,8 @@
         "main.py",
         "radio.blocks.ts",
         "sound.blocks.ts",
-        "move.blocks.ts"
+        "move.blocks.ts",
+        "scoreAndWinning.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -26,5 +27,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
