@@ -1,6 +1,6 @@
 PlayTools.resetScore()
 PlayTools.setWinThreshold(10)
-basic.forever(function on_forever() {
+basic.forever(function () {
     if (MoveAndPlay.isRunning()) {
         PlayTools.increaseScore()
         music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
@@ -12,5 +12,4 @@ basic.forever(function on_forever() {
     } else {
         PlayTools.checkForWin()
     }
-    
 })

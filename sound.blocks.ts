@@ -1,7 +1,7 @@
 /**
  * Custom blocks related to sendning out music for physical play
  */
-//% weight=100 color=#548B54 icon="\uf0a4"
+//% weight=100 color=#097969 icon="\uf0a4"
 namespace PlayTools {
 
 

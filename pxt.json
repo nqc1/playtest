@@ -15,7 +15,7 @@
         "radio.blocks.ts",
         "sound.blocks.ts",
         "move.blocks.ts",
-        "scoreAndWinning.ts"
+        "score.winning.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -27,5 +27,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }

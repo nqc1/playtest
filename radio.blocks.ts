@@ -2,7 +2,7 @@
 /**
  * Custom blocks related to sending and recieving radio signals for physical play
  */
-//% weight=100 color=#548B54 icon="\uf0a4"
+//% weight=100 color=#097969 icon="\uf0a4"
 //% name="Play with Others"
 namespace RadioPlay {
 
