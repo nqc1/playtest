@@ -1,7 +1,7 @@
 /**
  * Custom blocks related to sendning out music for physical play
  */
-//% weight=100 color=#097969 icon="\uf0a4"
+//% weight=100 color=#097969 icon="\uf0a4" //replace the icon maybe
 namespace PlayTools {
 
 
@@ -9,7 +9,7 @@ namespace PlayTools {
     // * Any Sound Detected
     // * @returns True if any sound is detected, false otherwise.
     // */
-    // //% block="Any Sound Detected"
+    // //% notblock="Any Sound Detected"
     // export function anySoundDetected(): boolean {
     //     let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
 
@@ -28,7 +28,7 @@ namespace PlayTools {
     // * @param sensitivity - The sensitivity threshold for sound detection (0-1023).
     //  * @returns True if sound is detected, false otherwise.
     // */
-    // //% block="Sound Detected with Sensitivity $sensitivity"
+    // //% notblock="Sound Detected with Sensitivity $sensitivity"
     // export function soundDetected(sensitivity: number): boolean {
     //     let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
 
@@ -41,9 +41,6 @@ namespace PlayTools {
     // }
 
 
-
-
-    //% block
     /**
     * Sound plays if game event happens which 
     * correspondes to a player setback or loss
@@ -57,7 +54,6 @@ namespace PlayTools {
     * Sound plays if game event happens which
     * correspondes to a player advancement or win
     */
-    //% block
     export function winSound() {
         //melody needs test
         music.playMelody("E D E C", 200)
