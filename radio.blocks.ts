@@ -12,8 +12,8 @@ namespace RadioPlay {
         * @returns True if signal strength suggests proximity, false otherwise.
         */
     //% block="Is %thisDevice close to touching %otherDevice"
-    export function isTouch(otherDevice: number): boolean {
-        radio.setTransmitPower(2)
+    export function isTouch(): boolean {
+        radio.setTransmitPower(1)
         radio.setGroup(0); // Set a radio group (choose any number you like)
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
 
@@ -39,8 +39,8 @@ namespace RadioPlay {
      * @returns True if signal strength suggests proximity, false otherwise.
      */
     //% block="Is %thisDevice close to %otherDevice"
-    export function isClose(otherDevice: number): boolean {
-        radio.setTransmitPower(3)
+    export function isClose(): boolean {
+        radio.setTransmitPower(2)
         radio.setGroup(0); // Set a radio group (choose any number you like)
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
 

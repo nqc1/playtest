@@ -5,23 +5,23 @@
 namespace PlayTools {
 
 
-    // /**
-    // * Any Sound Detected
-    // * @returns True if any sound is detected, false otherwise.
-    // */
-    // //% notblock="Any Sound Detected"
-    // export function anySoundDetected(): boolean {
-    //     let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
+    /**
+    * Any Sound Detected
+    * @returns True if any sound is detected, false otherwise.
+    */
+    //%block="Any Sound Detected"
+    export function anySoundDetected(): boolean {
+        let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
 
-    //     // Check if the sound level is above a minimum threshold
-    //     let minimumThreshold = 690; // Adjust as needed
+        // Check if the sound level is above a minimum threshold
+        let minimumThreshold = 675; // Adjust as needed
 
-    //     if (soundLevel > minimumThreshold) {
-    //         return true; // Sound detected
-    //     } else {
-    //         return false; // No significant sound detected
-    //     }
-    // }
+        if (soundLevel > minimumThreshold) {
+            return true; // Sound detected
+        } else {
+            return false; // No significant sound detected
+        }
+    }
 
     // /**
     // * Sound Detected

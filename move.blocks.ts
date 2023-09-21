@@ -41,7 +41,7 @@ namespace MoveAndPlay {
         */
     //% block="Is Jumping"
     export function isJumping(): boolean {
-        let threshold = -1750; // Adjust this threshold value as needed
+        let threshold = -1500; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);

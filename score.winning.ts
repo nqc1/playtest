@@ -21,13 +21,22 @@ namespace PlayTools {
     /**
      * Check for a win and display the result.
      */
-    //% block="CheckForWin"
-    export function checkForWin(): void {
+    //% block="Check For Win Score"
+    export function checkForWin(): boolean {
         if (score >= winScore) {
-            winSound()
-            basic.showString("YOU WIN!");
-            resetScore()
+            return true
         }
+        return false
+    }
+
+    /**
+     * Check for a win and display the result.
+     */
+    //% block="You Win!"
+    export function winEvent(): void {
+        winSound()
+        basic.showString("YOU WIN!");
+        resetScore()
     }
 
     /**
