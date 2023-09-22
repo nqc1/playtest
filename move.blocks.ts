@@ -44,7 +44,7 @@ namespace MoveAndPlay {
         */
     //% block="is jumping"
     export function isJumping(): boolean {
-        let threshold = -1500; // Adjust this threshold value as needed
+        let threshold = 1500; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -55,9 +55,9 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = (currentX - prevX);
-        let deltaY = (currentY - prevY);
-        let deltaZ = (currentZ - prevZ);
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
 
 
         if (deltaY < threshold) {
@@ -85,9 +85,9 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = (currentX - prevX);
-        let deltaY = (currentY - prevY);
-        let deltaZ = (currentZ - prevZ);
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
 
 
         if (deltaZ > threshold) {
@@ -115,9 +115,9 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = (currentX - prevX);
-        let deltaY = (currentY - prevY);
-        let deltaZ = (currentZ - prevZ);
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
 
 
         if (deltaZ > threshold) {
@@ -136,7 +136,7 @@ namespace MoveAndPlay {
     */
     //% block="is standing"
     export function isStanding(): boolean {
-        let threshold = -700; // Adjust this threshold value as needed
+        let threshold = 700; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -147,9 +147,9 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = (currentX - prevX);
-        let deltaY = (currentY - prevY);
-        let deltaZ = (currentZ - prevZ);
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
 
 
         if (deltaY < threshold) {
@@ -178,9 +178,9 @@ namespace MoveAndPlay {
         let currentY = input.acceleration(Dimension.Y);
         let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = (currentX - prevX);
-        let deltaY = (currentY - prevY);
-        let deltaZ = (currentZ - prevZ);
+        let deltaX = Math.abs(currentX - prevX);
+        let deltaY = Math.abs(currentY - prevY);
+        let deltaZ = Math.abs(currentZ - prevZ);
 
 
         if (deltaY > threshold) {
