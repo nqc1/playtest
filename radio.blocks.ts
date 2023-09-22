@@ -2,8 +2,8 @@
 /**
  * Custom blocks related to sending and recieving radio signals for physical play
  */
-//% weight=100 color=#097969 icon="Ψ"
-//% name="Play with Others"
+//% weight=1 color=#097969 icon="\uf1e0"
+//% block="Play with Others"
 namespace RadioPlay {
 
     /**
@@ -11,7 +11,7 @@ namespace RadioPlay {
         * @param otherDevice - The other micro:bit to check proximity with.
         * @returns True if signal strength suggests proximity, false otherwise.
         */
-    //% block="Is %thisDevice close to touching %otherDevice"
+    //% block="is %thisDevice close to touching %otherDevice"
     export function isTouch(): boolean {
         radio.setTransmitPower(1)
         radio.setGroup(0); // Set a radio group (choose any number you like)
@@ -38,7 +38,7 @@ namespace RadioPlay {
      * @param otherDevice - The other micro:bit to check proximity with.
      * @returns True if signal strength suggests proximity, false otherwise.
      */
-    //% block="Is %thisDevice close to %otherDevice"
+    //% block="is %thisDevice close to %otherDevice"
     export function isClose(): boolean {
         radio.setTransmitPower(2)
         radio.setGroup(0); // Set a radio group (choose any number you like)
@@ -79,6 +79,24 @@ namespace RadioPlay {
     //    radio.setTransmitPower(1)
     //}
 
+
+    /**
+    * Any Sound Detected
+    * @returns True if any sound is detected, false otherwise.
+    */
+    //%block="any sound detected"
+    export function anySoundDetected(): boolean {
+        let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
+
+        // Check if the sound level is above a minimum threshold
+        let minimumThreshold = 675; // Adjust as needed
+
+        if (soundLevel > minimumThreshold) {
+            return true; // Sound detected
+        } else {
+            return false; // No significant sound detected
+        }
+    }
 
 
 

@@ -1,7 +1,8 @@
 /**
  * Custom blocks related to sendning out music for physical play
  */
-//% weight=100 color=#097969 icon="Δ"
+//% weight=0 color=#097969 icon="\uf005"
+//% block="Score and Countdown"
 namespace PlayTools {
 
     let score = 0; // Initialize the score
@@ -21,7 +22,7 @@ namespace PlayTools {
     /**
      * Check for a win and display the result.
      */
-    //% block="Check For Win Score"
+    //% block="win?"
     export function checkForWin(): boolean {
         if (score >= winScore) {
             return true
@@ -32,7 +33,7 @@ namespace PlayTools {
     /**
      * Check for a win and display the result.
      */
-    //% block="You Win!"
+    //% block="you win!"
     export function winEvent(): void {
         winSound()
         basic.showString("YOU WIN!");
@@ -43,7 +44,7 @@ namespace PlayTools {
     * Set the win threshold score.
     * @param threshold - The score required to win.
         */
-    //% block="Set Win Threshold to $threshold"
+    //% block="set win threshold to $threshold"
     export function setWinThreshold(threshold: number): void {
         winScore = threshold;
         updateDisplay();
@@ -53,7 +54,7 @@ namespace PlayTools {
      * Get the current score.
      * @returns The current score.
      */
-    //% block="Get Score"
+    //% block="get score"
     export function getScore(): number {
         return score;
     }
@@ -61,7 +62,7 @@ namespace PlayTools {
     /**
      * Reset the score to zero.
      */
-    //% block="Reset Score"
+    //% block="reset score"
     export function resetScore(): void {
         score = 0;
         updateDisplay();
@@ -70,7 +71,7 @@ namespace PlayTools {
     /**
     * Decrease the score by one.
     */
-    //% block="Decrease Score"
+    //% block="decrease score"
     export function decreaseScore(): void {
         if (score > 0) {
             score--;
@@ -82,12 +83,78 @@ namespace PlayTools {
     /**
      * Increase the score by one.
      */
-    //% block="Increase Score"
+    //% block="increase score"
     export function increaseScore(): void {
         score++;
         updateDisplay();
         pause(200)
     }
+
+
+    /**
+    * Sound plays if game event happens which 
+    * correspondes to a player setback or loss
+    */
+    export function loseSound() {
+        //melody needs test
+        music.playMelody("G E C", 150)
+    }
+
+    /**
+    * Sound plays if game event happens which
+    * correspondes to a player advancement or win
+    */
+    export function winSound() {
+        //melody needs test
+        music.playMelody("E D E C", 200)
+    }
+
+    /**
+    * Custom Countdown Block
+    * @param seconds - Number of seconds for the countdown
+    **/
+    //% block="countdown %seconds|seconds"
+    //% seconds.min=1 seconds.max=3600
+    export function customCountdown(seconds: number): void {
+        for (let i = seconds; i > 0; i--) {
+            if (i > 9) {
+                music.playTone(Note.C, music.beat(BeatFraction.Half));
+                basic.pause(1000); // Delay for 1 second
+            } else {
+                music.playTone(Note.G, music.beat(BeatFraction.Half));
+                basic.showNumber(i);
+                basic.pause(300); // Delay
+                basic.clearScreen();
+            }
+        }
+        winSound()
+        loseSound()
+        basic.showIcon(IconNames.Happy);
+    }
+
+
+    // /**
+    // * Sound Detected
+    // * @param sensitivity - The sensitivity threshold for sound detection (0-1023).
+    //  * @returns True if sound is detected, false otherwise.
+    // */
+    // //% notblock="Sound Detected with Sensitivity $sensitivity"
+    // export function soundDetected(sensitivity: number): boolean {
+    //     let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
+
+    //     // Check if the sound level exceeds the sensitivity threshold
+    //     if (soundLevel > sensitivity) {
+    //         return true; // Sound detected
+    //     } else {
+    //         return false; // No significant sound detected
+    //     }
+    // }
+
+
+
+
+
+
 
 }
 

@@ -14,7 +14,6 @@
         "custom.ts",
         "main.py",
         "radio.blocks.ts",
-        "sound.blocks.ts",
         "move.blocks.ts",
         "score.winning.ts"
     ],

@@ -1,14 +1,17 @@
+
 /**
  * Custom blocks
  */
-//% weight=100 color=#097969 icon="Ω"
+//% weight=2 
+//% color=#097969 
+//% icon="\uf004"
+//% block="Move and Play"
 namespace MoveAndPlay {
-
     /**
       * Check Movement
       * @returns True if movement is detected, false otherwise.
       */
-    //% block="Is Moving"
+    //% block="is moving"
     export function isMovementDetected(): boolean {
         let threshold = 500; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
@@ -39,7 +42,7 @@ namespace MoveAndPlay {
         * Check Jumping
         * @returns True if Jumping is detected, false otherwise.
         */
-    //% block="Is Jumping"
+    //% block="is jumping"
     export function isJumping(): boolean {
         let threshold = -1500; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
@@ -69,7 +72,7 @@ namespace MoveAndPlay {
         * Check Running
         * @returns True if Running is detected, false otherwise.
         */
-    //% block="Is Running"
+    //% block="is running"
     export function isRunning(): boolean {
         let threshold = 750; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
@@ -99,7 +102,7 @@ namespace MoveAndPlay {
         * Check Walking
         * @returns True if Walking is detected, false otherwise.
         */
-    //% block="Is Walking"
+    //% block="is walking"
     export function isWalking(): boolean {
         let threshold = 400; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
@@ -131,7 +134,7 @@ namespace MoveAndPlay {
     * Check Standing
     * @returns True if standing is detected, false otherwise.
     */
-    //% block="Is Standing"
+    //% block="is standing"
     export function isStanding(): boolean {
         let threshold = -700; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
@@ -162,7 +165,7 @@ namespace MoveAndPlay {
     * Check Sitting
     * @returns True if sitting is detected, false otherwise.
     */
-    //% block="Is Sitting"
+    //% block="is sitting"
     export function isSitting(): boolean {
         let threshold = 700; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
