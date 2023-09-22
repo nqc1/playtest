@@ -86,10 +86,10 @@ namespace RadioPlay {
     */
     //%block="any sound detected"
     export function anySoundDetected(): boolean {
-        let soundLevel = pins.analogReadPin(AnalogPin.P0); // Read sound level from the microphone
-
+        // Read sound level from the microphone
+        let soundLevel = input.soundLevel()
         // Check if the sound level is above a minimum threshold
-        let minimumThreshold = 675; // Adjust as needed
+        let minimumThreshold = 80; // Adjust as needed
 
         if (soundLevel > minimumThreshold) {
             return true; // Sound detected
