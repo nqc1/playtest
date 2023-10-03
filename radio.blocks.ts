@@ -6,6 +6,17 @@
 //% block="Play with Others"
 namespace RadioPlay {
 
+    let playerID = 1
+   
+    let isSpecial = false; // Initialize isSpecial as false initially
+
+    radio.onDataPacketReceived(({ receivedString }) => {
+        if (receivedString == "specialPlayer") {
+            isSpecial = true;
+        } else if (receivedString == "specialPlayerChange")
+            isSpecial = false;
+    });
+
     /**
         * Check Proximity (based on signal strength)
         * @param otherDevice - The other micro:bit to check proximity with.
@@ -14,15 +25,13 @@ namespace RadioPlay {
     //% block="is %thisDevice close to touching %otherDevice"
     export function isTouch(): boolean {
         radio.setTransmitPower(1)
-        radio.setGroup(0); // Set a radio group (choose any number you like)
+        radio.setGroup(0); // Set a radio group
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
-
-        let signalStrengthThreshold = 0; // This may not do anything
 
         let proximityDetected = false;
 
         radio.onReceivedValue(function (name, signalStrength) { //look more into the onreceived value function and other radio uses
-            if (name === "ping" && signalStrength >= signalStrengthThreshold) {
+            if (name === "ping") {
                 proximityDetected = true; // If signal strength suggests proximity, set the flag to true
             }
         });
@@ -44,12 +53,11 @@ namespace RadioPlay {
         radio.setGroup(0); // Set a radio group (choose any number you like)
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
 
-        let signalStrengthThreshold = 0; // This may not do anything
 
         let proximityDetected = false;
 
         radio.onReceivedValue(function (name, signalStrength) { //look more into the onreceived value function and other radio uses
-            if (name === "ping" && signalStrength >= signalStrengthThreshold) {
+            if (name === "ping") {
                 proximityDetected = true; // If signal strength suggests proximity, set the flag to true
             }
         });
@@ -58,26 +66,6 @@ namespace RadioPlay {
 
         return proximityDetected; // Return the flag indicating whether proximity was detected or not
     }
-
-
-    /**
-     * 
-     */
-    //% block="Send Signal"
-    //export function SendSignal(): void {
-    //    radio.setGroup(0);
-    //    radio.setTransmitPower(2)
-    //}
-
-
-    /**
-     *
-     */
-    //% block="Send Signal Close To Touching"
-    //export function SendSignalTouch(): void {
-    //    radio.setGroup(0);
-    //    radio.setTransmitPower(1)
-    //}
 
 
     /**
@@ -97,7 +85,57 @@ namespace RadioPlay {
             return false; // No significant sound detected
         }
     }
+ 
+    /**
+     * Set Player ID
+     * @param playerId - The ID to assign to the player (e.g., 1, 2, 3, ...).
+     */
+    //% block="set my player ID to $id"
+    export function setPlayerID(id: number): void {
+        // Store the assigned player ID in a global variable
+        // You can use this variable in your game logic
+        playerID=id
+    }
 
 
+    /**
+    * Set Special Player
+    * @param playerId - The ID of the special player (e.g., 1, 2, 3, ...).
+    */
+    //% block="set special player to $playerId"
+    export function setSpecialPlayer(playerId: number): void {
+        radio.sendValue("specialPlayer", playerId);
+    }
+
+    /**
+    * Change Special Player
+    */
+    //% block="random special player $numberOfPlayers"
+    export function changeSpecialPlayer(numberOfPlayers: number): void {
+        // Generate a new random player ID (e.g., 1, 2, 3, ...) and set it as the "special" player
+        let newPlayerId = Math.floor(Math.random() * numberOfPlayers)+1; // Adjust the range as needed
+        radio.sendValue("specialPlayer", newPlayerId);
+    }
+
+    /**
+     * Manually Change Special Player
+     * @param originalPlayerId - The current special player's ID.
+     * @param newPlayerId - The ID of the new special player.
+     */
+    //% block="manually change special player from $originalPlayerId to $newPlayerId"
+    export function manuallyChangeSpecialPlayer(originalPlayerId: number, newPlayerId: number): void {
+        radio.sendValue("specialPlayerChange", originalPlayerId);
+        radio.sendValue("specialPlayer", newPlayerId);
+    }
+
+    /**
+     * Check if I am the Special Player
+     * @param isSpecial - True if the Micro:bit is the special player, false otherwise.
+     */
+    //% block="i am the special player?"
+    export function amISpecialPlayer(): boolean {
+        // Check if the Micro:bit is designated as the special player
+        return isSpecial;
+    }
 
 }
