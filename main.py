@@ -27,6 +27,6 @@ input.on_button_pressed(Button.B, on_button_pressed_b)
 
 def on_forever():
     if RadioPlay.is_touch():
-        music.play(music.tone_playable(262, music.beat(BeatFraction.WHOLE)),
+        music.play(music.tone_playable(262, music.beat(BeatFraction.HALF)),
             music.PlaybackMode.UNTIL_DONE)
 basic.forever(on_forever)

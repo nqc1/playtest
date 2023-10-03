@@ -100,19 +100,19 @@ namespace RadioPlay {
         radio.setGroup(0); // Set a radio group
         radio.sendValue("ping", 1); // Send a ping signal to the other micro:bit
 
+        let signalStrengthThreshold = 0; // This may not do anything
         let proximityDetected = false;
 
-        radio.onReceivedValue(function (name) { //look more into the onreceived value function and other radio uses
-            if (name === "ping") {
-                proximityDetected = true; // If signal strength suggests proximity, set the flag to true
-            }
+        radio.onReceivedValue(function (name, signalStrength) { //look more into the onreceived value function and other radio uses
+            if (name === "ping" && signalStrength >= signalStrengthThreshold) {
+                        proximityDetected = true; // If signal strength suggests proximity, set the flag to true
+                    }
         });
 
         basic.pause(200); // Wait for a moment
 
         return proximityDetected; // Return the flag indicating whether proximity was detected or not
     }
-
 
 
     /**
