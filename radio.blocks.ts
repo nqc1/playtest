@@ -116,15 +116,52 @@ namespace RadioPlay {
 
 
     /**
-    * Any Sound Detected
-    * @returns True if any sound is detected, false otherwise.
+    * Quiet Sound Detected
+    * @returns True if quiet level sound is detected, false otherwise.
     */
-    //%block="any sound detected"
-    export function anySoundDetected(): boolean {
+    //%block="quiet sound detected"
+    export function quietSound(): boolean {
+        // Read sound level from the microphone
+        let soundLevel = input.soundLevel()
+        // Check if the sound level is above a minimum threshold
+        let minimumThreshold = 40; // Adjust as needed
+
+        if (soundLevel > minimumThreshold) {
+            return true; // Sound detected
+        } else {
+            return false; // No significant sound detected
+        }
+    }
+
+
+    /**
+    * Medium Sound Detected
+    * @returns True if medium (talking) level sound is detected, false otherwise.
+    */
+    //%block="medium sound detected"
+    export function mediumSound(): boolean {
         // Read sound level from the microphone
         let soundLevel = input.soundLevel()
         // Check if the sound level is above a minimum threshold
         let minimumThreshold = 80; // Adjust as needed
+
+        if (soundLevel > minimumThreshold) {
+            return true; // Sound detected
+        } else {
+            return false; // No significant sound detected
+        }
+    }
+
+    /**
+    * Loud Sound Detected
+    * @returns True if Loud (yelling) level sound is detected, false otherwise.
+    */
+    //%block="loud sound detected"
+    export function loudSound(): boolean {
+        // Read sound level from the microphone
+        let soundLevel = input.soundLevel()
+        // Check if the sound level is above a minimum threshold
+        let minimumThreshold = 120; // Adjust as needed
 
         if (soundLevel > minimumThreshold) {
             return true; // Sound detected

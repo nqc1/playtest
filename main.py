@@ -4,7 +4,7 @@ def on_button_pressed_a():
         music.PlaybackMode.UNTIL_DONE)
     for index in range(1000):
         datalogger.log(datalogger.create_cv("Sound", input.sound_level()))
-        if RadioPlay.any_sound_detected():
+        if True:
             led.plot(1, 1)
         basic.pause(10)
         led.unplot(1, 1)

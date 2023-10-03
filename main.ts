@@ -3,7 +3,7 @@ input.onButtonPressed(Button.A, function () {
     music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
     for (let index = 0; index < 1000; index++) {
         datalogger.log(datalogger.createCV("Sound", input.soundLevel()))
-        if (RadioPlay.anySoundDetected()) {
+        if (RadioPlay.mediumSound()) {
             led.plot(1, 1)
         }
         basic.pause(10)
