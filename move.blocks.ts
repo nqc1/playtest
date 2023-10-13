@@ -44,7 +44,7 @@ namespace MoveAndPlay {
         */
     //% block="is jumping"
     export function isJumping(): boolean {
-        let threshold = 1500; // Adjust this threshold value as needed
+        let threshold = -1700; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -56,7 +56,7 @@ namespace MoveAndPlay {
         let currentZ = input.acceleration(Dimension.Z);
 
         let deltaX = Math.abs(currentX - prevX);
-        let deltaY = Math.abs(currentY - prevY);
+        let deltaY = currentY - prevY;
         let deltaZ = Math.abs(currentZ - prevZ);
 
 
@@ -90,7 +90,7 @@ namespace MoveAndPlay {
         let deltaZ = Math.abs(currentZ - prevZ);
 
 
-        if (deltaZ > threshold) {
+        if (deltaZ > threshold && deltaY > threshold) {
             return true; // Running detected
         } else {
             return false; // No Running detected
@@ -104,7 +104,9 @@ namespace MoveAndPlay {
         */
     //% block="is walking"
     export function isWalking(): boolean {
-        let threshold = 400; // Adjust this threshold value as needed
+        let lthreshold = 800; // Adjust this threshold value as needed
+        let uthreshold = 750
+        let uthreshold2 = 1100
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
@@ -120,7 +122,7 @@ namespace MoveAndPlay {
         let deltaZ = Math.abs(currentZ - prevZ);
 
 
-        if (deltaZ > threshold) {
+        if ((deltaZ + deltaY) > lthreshold && deltaZ < uthreshold && deltaY < uthreshold && (deltaZ + deltaY) < uthreshold2){
             return true; // Walking detected
         } else {
             return false; // No Walking detected
@@ -136,12 +138,13 @@ namespace MoveAndPlay {
     */
     //% block="is standing"
     export function isStanding(): boolean {
-        let threshold = 700; // Adjust this threshold value as needed
+        let thresholdy = 200; // Adjust this threshold value as needed
+        let thresholdz = 400; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
 
-        basic.pause(100); // Wait for a moment to collect new readings
+        basic.pause(200); // Wait for a moment to collect new readings
 
         let currentX = input.acceleration(Dimension.X);
         let currentY = input.acceleration(Dimension.Y);
@@ -152,7 +155,7 @@ namespace MoveAndPlay {
         let deltaZ = Math.abs(currentZ - prevZ);
 
 
-        if (deltaY < threshold) {
+        if (deltaY > thresholdy && deltaZ > thresholdz) {
             return true; // Standing detected
         } else {
             return false; // No Standing detected
