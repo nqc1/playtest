@@ -26,8 +26,25 @@ def on_button_pressed_ab():
 input.on_button_pressed(Button.AB, on_button_pressed_ab)
 
 def on_forever():
-    if RadioPlay.quiet_sound():
+    if RadioPlay.loud_sound():
         led.plot(0, 0)
         basic.pause(500)
         led.unplot(0, 0)
+    elif RadioPlay.medium_sound():
+        led.plot(1, 1)
+        basic.pause(500)
+        led.unplot(1, 1)
+    elif RadioPlay.quiet_sound():
+        led.plot(2, 2)
+        basic.pause(500)
+        led.unplot(2, 2)
 basic.forever(on_forever)
+
+def on_forever2():
+    if MoveAndPlay.is_running():
+        music.play(music.tone_playable(659, music.beat(BeatFraction.EIGHTH)),
+            music.PlaybackMode.UNTIL_DONE)
+    elif MoveAndPlay.is_walking():
+        music.play(music.tone_playable(262, music.beat(BeatFraction.EIGHTH)),
+            music.PlaybackMode.UNTIL_DONE)
+basic.forever(on_forever2)

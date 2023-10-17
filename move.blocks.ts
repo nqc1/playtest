@@ -104,7 +104,7 @@ namespace MoveAndPlay {
         */
     //% block="is walking"
     export function isWalking(): boolean {
-        let lthreshold = 800; // Adjust this threshold value as needed
+        let lthreshold = 700; // Adjust this threshold value as needed
         let uthreshold = 750
         let uthreshold2 = 1100
         let prevX = input.acceleration(Dimension.X);
@@ -120,9 +120,10 @@ namespace MoveAndPlay {
         let deltaX = Math.abs(currentX - prevX);
         let deltaY = Math.abs(currentY - prevY);
         let deltaZ = Math.abs(currentZ - prevZ);
+        
+        
 
-
-        if ((deltaZ + deltaY) > lthreshold && deltaZ < uthreshold && deltaY < uthreshold && (deltaZ + deltaY) < uthreshold2){
+        if ((deltaZ + deltaY) > lthreshold && deltaZ < uthreshold && deltaY < uthreshold && (deltaZ + deltaY) < uthreshold2) {
             return true; // Walking detected
         } else {
             return false; // No Walking detected

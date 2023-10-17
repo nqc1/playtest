@@ -22,10 +22,26 @@ input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
     music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
 })
 basic.forever(function on_forever() {
-    if (RadioPlay.quietSound()) {
+    if (RadioPlay.loudSound()) {
         led.plot(0, 0)
         basic.pause(500)
         led.unplot(0, 0)
+    } else if (RadioPlay.mediumSound()) {
+        led.plot(1, 1)
+        basic.pause(500)
+        led.unplot(1, 1)
+    } else if (RadioPlay.quietSound()) {
+        led.plot(2, 2)
+        basic.pause(500)
+        led.unplot(2, 2)
+    }
+    
+})
+basic.forever(function on_forever2() {
+    if (MoveAndPlay.isRunning()) {
+        music.play(music.tonePlayable(659, music.beat(BeatFraction.Eighth)), music.PlaybackMode.UntilDone)
+    } else if (MoveAndPlay.isWalking()) {
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Eighth)), music.PlaybackMode.UntilDone)
     }
     
 })
