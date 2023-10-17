@@ -136,15 +136,15 @@ namespace MoveAndPlay {
     * Check Standing
     * @returns True if standing is detected, false otherwise.
     */
-    //% block="is standing"
+    //% block="is standing from ground"
     export function isStanding(): boolean {
         let thresholdy = 200; // Adjust this threshold value as needed
-        let thresholdz = 400; // Adjust this threshold value as needed
+        let thresholdz = 600; // Adjust this threshold value as needed
         let prevX = input.acceleration(Dimension.X);
         let prevY = input.acceleration(Dimension.Y);
         let prevZ = input.acceleration(Dimension.Z);
 
-        basic.pause(200); // Wait for a moment to collect new readings
+        basic.pause(100); // Wait for a moment to collect new readings
 
         let currentX = input.acceleration(Dimension.X);
         let currentY = input.acceleration(Dimension.Y);

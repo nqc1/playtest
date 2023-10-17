@@ -22,8 +22,10 @@ input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
     music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
 })
 basic.forever(function on_forever() {
-    if (MoveAndPlay.isWalking()) {
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Eighth)), music.PlaybackMode.UntilDone)
+    if (RadioPlay.quietSound()) {
+        led.plot(0, 0)
+        basic.pause(500)
+        led.unplot(0, 0)
     }
     
 })
