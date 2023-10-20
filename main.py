@@ -41,10 +41,13 @@ def on_forever():
 basic.forever(on_forever)
 
 def on_forever2():
-    if MoveAndPlay.is_running():
-        music.play(music.tone_playable(659, music.beat(BeatFraction.EIGHTH)),
-            music.PlaybackMode.UNTIL_DONE)
-    elif MoveAndPlay.is_walking():
-        music.play(music.tone_playable(262, music.beat(BeatFraction.EIGHTH)),
+    if MoveAndPlay.is_standing():
+        music.play(music.tone_playable(262, music.beat(BeatFraction.HALF)),
             music.PlaybackMode.UNTIL_DONE)
 basic.forever(on_forever2)
+
+def on_forever3():
+    if RadioPlay.is_close():
+        music.play(music.tone_playable(262, music.beat(BeatFraction.HALF)),
+            music.PlaybackMode.UNTIL_DONE)
+basic.forever(on_forever3)

@@ -137,7 +137,7 @@ namespace MoveAndPlay {
     * Check Standing
     * @returns True if standing is detected, false otherwise.
     */
-    //% block="is standing from ground"
+    //% block="is standing"
     export function isStanding(): boolean {
         let thresholdy = 200; // Adjust this threshold value as needed
         let thresholdz = 600; // Adjust this threshold value as needed

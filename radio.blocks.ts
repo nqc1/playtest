@@ -69,7 +69,7 @@ namespace RadioPlay {
       * @param otherDevice - The other micro:bit to check proximity with.
       * @returns True if signal strength suggests proximity, false otherwise.
       */
-    //% block="is %thisDevice close to touching %otherDevice"
+    //% block="is %thisDevice very close to %otherDevice"
     export function isTouch(): boolean {
         radio.setTransmitPower(1)
         radio.setGroup(0); // Set a radio group
