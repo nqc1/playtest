@@ -138,61 +138,62 @@ namespace MoveAndPlay {
     * @returns True if standing is detected, false otherwise.
     */
     //% block="is standing"
-    export function isStanding(): boolean {
-        let thresholdy = 200; // Adjust this threshold value as needed
-        let thresholdz = 600; // Adjust this threshold value as needed
-        let prevX = input.acceleration(Dimension.X);
-        let prevY = input.acceleration(Dimension.Y);
-        let prevZ = input.acceleration(Dimension.Z);
+    // export function isStanding(): boolean {
+    //     let thresholdy = 200; // Adjust this threshold value as needed
+    //     let thresholdz = 600; // Adjust this threshold value as needed
+    //     let prevX = input.acceleration(Dimension.X);
+    //     let prevY = input.acceleration(Dimension.Y);
+    //     let prevZ = input.acceleration(Dimension.Z);
 
-        basic.pause(100); // Wait for a moment to collect new readings
+    //     basic.pause(100); // Wait for a moment to collect new readings
 
-        let currentX = input.acceleration(Dimension.X);
-        let currentY = input.acceleration(Dimension.Y);
-        let currentZ = input.acceleration(Dimension.Z);
+    //     let currentX = input.acceleration(Dimension.X);
+    //     let currentY = input.acceleration(Dimension.Y);
+    //     let currentZ = input.acceleration(Dimension.Z);
 
-        let deltaX = Math.abs(currentX - prevX);
-        let deltaY = Math.abs(currentY - prevY);
-        let deltaZ = Math.abs(currentZ - prevZ);
-
-
-        if (deltaY > thresholdy && deltaZ > thresholdz) {
-            return true; // Standing detected
-        } else {
-            return false; // No Standing detected
-        }
-    }
-
-    ////The below function probably won't work. It seems that the mircobit is unable to
-    ////Determine the directionality of movement?
-    /**
-    * Check Sitting
-    * @returns True if sitting is detected, false otherwise.
-    */
-    //% block="is sitting"
-    export function isSitting(): boolean {
-        let threshold = 700; // Adjust this threshold value as needed
-        let prevX = input.acceleration(Dimension.X);
-        let prevY = input.acceleration(Dimension.Y);
-        let prevZ = input.acceleration(Dimension.Z);
-
-        basic.pause(100); // Wait for a moment to collect new readings
-
-        let currentX = input.acceleration(Dimension.X);
-        let currentY = input.acceleration(Dimension.Y);
-        let currentZ = input.acceleration(Dimension.Z);
-
-        let deltaX = Math.abs(currentX - prevX);
-        let deltaY = Math.abs(currentY - prevY);
-        let deltaZ = Math.abs(currentZ - prevZ);
+    //     let deltaX = Math.abs(currentX - prevX);
+    //     let deltaY = Math.abs(currentY - prevY);
+    //     let deltaZ = Math.abs(currentZ - prevZ);
 
 
-        if (deltaY > threshold) {
-            return true; // Sitting detected
-        } else {
-            return false; // No Sitting detected
-        }
-    }
+    //     if (deltaY > thresholdy && deltaZ > thresholdz) {
+    //         return true; // Standing detected
+    //     } else {
+    //         return false; // No Standing detected
+    //     }
+    // }
+
+    // ////The below function probably won't work. It seems that the mircobit is unable to
+    // ////Determine the directionality of movement?
+    // /**
+    // * Check Sitting
+    // * @returns True if sitting is detected, false otherwise.
+    // */
+    // //% block="is sitting"
+    // export function isSitting(): boolean {
+    //     let threshold = 700; // Adjust this threshold value as needed
+    //     let prevX = input.acceleration(Dimension.X);
+    //     let prevY = input.acceleration(Dimension.Y);
+    //     let prevZ = input.acceleration(Dimension.Z);
+
+    //     basic.pause(100); // Wait for a moment to collect new readings
+
+    //     let currentX = input.acceleration(Dimension.X);
+    //     let currentY = input.acceleration(Dimension.Y);
+    //     let currentZ = input.acceleration(Dimension.Z);
+
+    //     let deltaX = Math.abs(currentX - prevX);
+    //     let deltaY = Math.abs(currentY - prevY);
+    //     let deltaZ = Math.abs(currentZ - prevZ);
+
+
+    //     if (deltaY > threshold) {
+    //         return true; // Sitting detected
+    //     } else {
+    //         return false; // No Sitting detected
+    //     }
+    // }
+ 
 
 
 }
